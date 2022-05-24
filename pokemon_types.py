@@ -170,7 +170,11 @@ attack_type = {'normal': {'normal': NEUTRAL, 'fighting': NEUTRAL,
 
 
 def type_multiplier(move_type, type1, type2):
-    # TODO Write comment for this function.
+    """This function will calculate the multiplier. This multiplier will be
+    used in the damage formula. It takes the move type, and the types of the
+    Pokemon defending the attack as parameters. It then uses the nested dict
+    above to calculate the multiplier and return the value. Raise KeyError
+    if the move type doesn't exist. """
     try:
         if type2 == 'None':
             return attack_type[move_type][type1]
