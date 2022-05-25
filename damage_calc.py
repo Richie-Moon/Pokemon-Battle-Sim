@@ -1,4 +1,4 @@
-import pokemon_moves
+import pokemon_move_class
 import random
 import pokemon_types
 
@@ -6,12 +6,14 @@ import pokemon_types
 # Damage Formula can be found at https://bulbapedia.bulbagarden.net/wiki/Damage
 # Only using the values that I will incorporate into the program. (Not using
 # ZMove, Targets, weather, etc).
-def calculate_dmg(poke1: pokemon_moves.Pokemon, poke2: pokemon_moves.Pokemon,
-                  move: pokemon_moves.Move):
+def calculate_dmg(poke1: pokemon_move_class.Pokemon,
+                  poke2: pokemon_move_class.Pokemon,
+                  move: pokemon_move_class.Move):
     # Calculate the critical hit damage multiplier.
     crit_chance = random.randint(1, 25)
     if crit_chance == 1:
         crit_dmg = 1.5
+        print("Crit!")
     else:
         crit_dmg = 1
 
@@ -42,8 +44,18 @@ def calculate_dmg(poke1: pokemon_moves.Pokemon, poke2: pokemon_moves.Pokemon,
     # Calculate Type Effectiveness using pokemon_types.py
     type_multiplier = pokemon_types.type_multiplier(move.typ, poke2.type1,
                                                     poke2.type2)
+    if type_multiplier >= 2:
+        print("Super Effective!")
+    elif type_multiplier <= 0.5:
+        print("Not very effective...")
 
-    damage = int(
-        ((((2 * LEVEL // 5) + 2) * move.pwr * (attack // defence) // 50)
-         + 2) * crit_dmg * random_value * STAB * type_multiplier)
+    # damage is calculated line by line as after each calculation, all number
+    # are rounded down to an integer. First line is an int as all values are
+    # whole numbers, and we are using floor division.
+
+    damage = (((2 * LEVEL // 5) + 2) * move.pwr * attack // defence // 50) + 2
+    damage = int(damage * crit_dmg)
+    damage = int(damage * random_value)
+    damage = int(damage * STAB)
+    damage = int(damage * type_multiplier)
     return damage
