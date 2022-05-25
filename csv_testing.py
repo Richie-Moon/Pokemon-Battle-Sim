@@ -1,9 +1,12 @@
 import csv
 import pokemon_types
 
+all_pokemon = {}
+
 with open('pokemon_data.csv', mode='r') as data:
     data_reader = csv.DictReader(data, delimiter=',')
 
     for pokemon in data_reader:
-        print(pokemon['name'])
-        print(pokemon_types.type_multiplier('fire', pokemon['type1'], pokemon['type2']))
+        all_pokemon.update()
+
+print(all_pokemon)
