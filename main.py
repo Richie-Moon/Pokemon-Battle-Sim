@@ -8,7 +8,17 @@ vine_whip = pokemon_move_class.Move('Vine Whip', 45, 'grass', 'Physical')
 ember = pokemon_move_class.Move('Ember', 40, 'fire', 'Special')
 
 
-def pick_pokemon(number) -> dict:
+# TODO Finish asking the user for the moves that they want on their pokemon.
+# TODO List all possible moves if asked.
+def pick_moves(number):
+    with open('movesets.csv', mode='r') as data:
+        reader = list(csv.DictReader(data))
+
+        while True:
+            user_move = input(f"Please enter move {number}: ")
+
+
+def pick_pokemon(number) -> pokemon_move_class.Pokemon:
     with open('pokedex.csv', mode='r') as data:
         reader = list(csv.DictReader(data))
 
@@ -17,7 +27,17 @@ def pick_pokemon(number) -> dict:
             for pokemon in reader:
                 if pokemon['name'] == user_pokemon:
                     print(f"You chose {pokemon['name']}!")
-                    return pokemon
+
+                    return pokemon_move_class.Pokemon(pokemon['name'],
+                                                      pokemon['type_1'],
+                                                      pokemon['type_2'],
+                                                      pokemon['hp'],
+                                                      pokemon['atk'],
+                                                      pokemon['spatk'],
+                                                      pokemon['df'],
+                                                      pokemon['spdf'],
+                                                      pokemon['spd'],
+                                                      pokemon[])
                 else:
                     pass
             print('No Pokemon found. ')
