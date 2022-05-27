@@ -7,8 +7,6 @@ vine_whip = pokemon_move_class.Move('Vine Whip', 45, 'grass', 'Physical')
 ember = pokemon_move_class.Move('Ember', 40, 'fire', 'Special')
 
 
-# TODO Finish asking the user for the moves that they want on their pokemon.
-# TODO List all possible moves if asked.
 def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Move:
     with open('movesets.csv', mode='r') as data:
         reader = list(csv.DictReader(data))
