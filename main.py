@@ -18,9 +18,9 @@ def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Mov
             for move in reader:
                 if move['species'] == pokemon:
                     for i in range(1, 175):
-                        if move[f'move{i}'] != '' and move[f'move{i}'] not in used_moves:
+                        if move[f'move{i}'] != '' and move[f'move{i}'] not in \
+                                used_moves:
                             moves_list.add(move[f'move{i}'].strip())
-                            print(moves_list)
 
             with open('moves.csv', mode='r') as move_data:
                 moves_reader = list(csv.DictReader(move_data))
@@ -28,7 +28,6 @@ def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Mov
                 if user_move == 'L':
                     print(", ".join(moves_list))
                 elif user_move in used_moves:
-                    print(used_moves)
                     print('Move already picked. \n')
                 elif user_move in moves_list:
                     for pokemon_move in moves_reader:
@@ -57,6 +56,7 @@ def pick_pokemon(number) -> pokemon_move_class.Pokemon:
 
                     move1 = pick_moves(pokemon['name'], 1, moves)
                     moves.append(move1.name)
+                    print(moves)
                     move2 = pick_moves(pokemon['name'], 2, moves)
                     moves.append(move2.name)
                     move3 = pick_moves(pokemon['name'], 3, moves)
