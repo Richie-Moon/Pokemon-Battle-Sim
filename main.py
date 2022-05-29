@@ -10,7 +10,7 @@ ember = pokemon_move_class.Move('Ember', 40, 'fire', 'Special')
 def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Move:
     with open('movesets.csv', mode='r') as data:
         reader = list(csv.DictReader(data))
-        moves_list = []
+        moves_list = set({})
 
         while True:
             user_move = input(f"Please enter move {number} (Type 'L' to list "
@@ -18,15 +18,19 @@ def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Mov
             for move in reader:
                 if move['species'] == pokemon:
                     for i in range(1, 175):
-                        if move[f'move{i}'] != '':
-                            moves_list.append(move[f'move{i}'].strip())
+                        if move[f'move{i}'] != '' and move[f'move{i}'] not in used_moves:
+                            moves_list.add(move[f'move{i}'].strip())
+                            print(moves_list)
 
             with open('moves.csv', mode='r') as move_data:
                 moves_reader = list(csv.DictReader(move_data))
 
                 if user_move == 'L':
-                    print(", ".join(set(moves_list)))
-                elif user_move in moves_list and user_move not in used_moves:
+                    print(", ".join(moves_list))
+                elif user_move in used_moves:
+                    print(used_moves)
+                    print('Move already picked. \n')
+                elif user_move in moves_list:
                     for pokemon_move in moves_reader:
                         if pokemon_move['name'] == user_move:
                             print(f"Picked {user_move} as move {number}! \n")
