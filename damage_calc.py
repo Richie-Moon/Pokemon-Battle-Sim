@@ -9,6 +9,9 @@ import pokemon_types
 def calculate_dmg(poke1: pokemon_move_class.Pokemon,
                   poke2: pokemon_move_class.Pokemon,
                   move: pokemon_move_class.Move):
+    """Calculate the damgage that 1 pokemon would deal to another, using the
+    damage formula. """
+
     # Calculate the critical hit damage multiplier.
     crit_chance = random.randint(1, 25)
     if crit_chance == 1:

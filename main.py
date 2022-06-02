@@ -1,10 +1,7 @@
 import csv
 import damage_calc
+import random
 import pokemon_move_class
-
-# Create moves for testing
-vine_whip = pokemon_move_class.Move('Vine Whip', 45, 'grass', 'Physical')
-ember = pokemon_move_class.Move('Ember', 40, 'fire', 'Special')
 
 
 def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Move:
@@ -56,7 +53,6 @@ def pick_pokemon(number) -> pokemon_move_class.Pokemon:
 
                     move1 = pick_moves(pokemon['name'], 1, moves)
                     moves.append(move1.name)
-                    print(moves)
                     move2 = pick_moves(pokemon['name'], 2, moves)
                     moves.append(move2.name)
                     move3 = pick_moves(pokemon['name'], 3, moves)
@@ -80,9 +76,27 @@ def pick_pokemon(number) -> pokemon_move_class.Pokemon:
             print('No Pokemon found. ')
 
 
-users_pokemon = []
-for i in range(1, 7):
-    picked_pokemon = pick_pokemon(i)
-    users_pokemon.append(picked_pokemon)
+# users_pokemon = []
+# for i in range(1, 7):
+#     picked_pokemon = pick_pokemon(i)
+#     users_pokemon.append(picked_pokemon)
 
-print(users_pokemon)
+computers_pokemon = []
+with open('pokedex.csv', mode='r') as pokedex:
+    dict_reader = list(csv.DictReader(pokedex))
+
+    with open('movesets.csv', mode='r') as movesets:
+        movesets_reader = list(csv.DictReader(movesets))
+
+    for i in range(6):
+        chosen_pokemon = random.choice(dict_reader)
+            # TODO choose 4 random moves from that pokemon moveset.
+            for pokemon in dict_reader:
+                if movesets_reader['species'] ==
+
+            move_1 =
+            move_2 =
+            move_3 =
+            move_4 =
+
+    computers_pokemon.append()
