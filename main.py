@@ -90,13 +90,14 @@ with open('pokedex.csv', mode='r') as pokedex:
 
     for i in range(6):
         chosen_pokemon = random.choice(dict_reader)
-            # TODO choose 4 random moves from that pokemon moveset.
-            for pokemon in dict_reader:
-                if movesets_reader['species'] ==
-
-            move_1 =
-            move_2 =
-            move_3 =
-            move_4 =
+        # TODO choose 4 random moves from that pokemon moveset.
+        for pokemon in dict_reader:
+            if pokemon['name'] == chosen_pokemon['name']:
+                for move in movesets_reader:
+                    if move['species'] == pokemon['name']:
+                        move_1 = pokemon_move_class.Move()
+                        move_2 =
+                        move_3 =
+                        move_4 =
 
     computers_pokemon.append()
