@@ -4,7 +4,8 @@ import random
 import pokemon_move_class
 
 
-def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Move:
+def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.\
+        Move:
     with open('movesets.csv', mode='r') as data:
         reader = list(csv.DictReader(data))
         moves_list = set({})
@@ -34,7 +35,8 @@ def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class.Mov
                                 pokemon_move['name'],
                                 pokemon_move['power'],
                                 pokemon_move['type'],
-                                pokemon_move['category'])
+                                pokemon_move['category'],
+                                pokemon_move['accuracy'])
                 else:
                     print("That move doesn't exist. ")
 
@@ -81,23 +83,39 @@ def pick_pokemon(number) -> pokemon_move_class.Pokemon:
 #     picked_pokemon = pick_pokemon(i)
 #     users_pokemon.append(picked_pokemon)
 
+def pick_computer_moves(move_name) -> pokemon_move_class.Move:
+    with open('moves.csv', mode='r') as move_data:
+        moves = list(csv.DictReader(move_data))
+
+    for move in moves:
+        if move['name'] == move_name:
+            return pokemon_move_class.Move(move['name'], move['power'],
+                                           move['type'], move['category'],
+                                           move['accuracy'])
+
+
+def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
+    with open('pokedex.csv', mode='r') as data:
+        pokedex = list(csv.DictReader(data))
+    with open('movesets.csv', mode='r') as moveset_data:
+        movesets = list(csv.DictReader(moveset_data))
+
+    random_index = random.randint(1, 802)
+    for pokemon in pokedex:
+        if int(pokemon['pokedex_number']) == random_index:
+            name = pokemon['name']
+            break
+
+    for moveset in movesets:
+        if moveset['species'] == name:
+            for i in range(1, 174):
+                if i != '':
+                    pass
+            pick_computer_moves()
+
+
+
+pick_computer_pokemon()
+
+
 computers_pokemon = []
-with open('pokedex.csv', mode='r') as pokedex:
-    dict_reader = list(csv.DictReader(pokedex))
-
-    with open('movesets.csv', mode='r') as movesets:
-        movesets_reader = list(csv.DictReader(movesets))
-
-    for i in range(6):
-        chosen_pokemon = random.choice(dict_reader)
-        # TODO choose 4 random moves from that pokemon moveset.
-        for pokemon in dict_reader:
-            if pokemon['name'] == chosen_pokemon['name']:
-                for move in movesets_reader:
-                    if move['species'] == pokemon['name']:
-                        move_1 = pokemon_move_class.Move()
-                        move_2 =
-                        move_3 =
-                        move_4 =
-
-    computers_pokemon.append()
