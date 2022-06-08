@@ -20,7 +20,7 @@ def calculate_dmg(poke1: pokemon_move_class.Pokemon,
     else:
         crit_dmg = 1
 
-    # All Pokémon levels are set to 50.
+    # All Pokémon levels are set to 50 (In competitive Pokemon.).
     LEVEL = 50
 
     # Calculate the random part of the formula. It is a multiplier. A random

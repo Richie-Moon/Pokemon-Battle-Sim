@@ -104,16 +104,22 @@ def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
     for pokemon in pokedex:
         if int(pokemon['pokedex_number']) == random_index:
             name = pokemon['name']
-            break
 
-    for moveset in movesets:
-        if moveset['species'] == name:
-            for i in range(1, 174):
-                if i != '':
-                    pass
-            pick_computer_moves()
+        for moveset in movesets:
+            if moveset['species'] == name:
+                moves = []
+                for i in range(1, 174):
+                    if moveset[f'move{i}'] != '':
+                        moves.append(moveset[f'move{i}'].strip())
 
+                comp_move = pick_computer_moves(random.choice(moves))
+                while True:
+                    if comp_move.pwr == '0' or comp_move.pwr == '-':
+                        comp_move = pick_computer_moves(random.choice(moves))
+                    else:
+                        break
 
+                return pokemon_move_class.Pokemon(name, pokemon['type_1'], pokemon['type_2'], )
 
 pick_computer_pokemon()
 
