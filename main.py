@@ -100,28 +100,52 @@ def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
     with open('movesets.csv', mode='r') as moveset_data:
         movesets = list(csv.DictReader(moveset_data))
 
-    random_index = random.randint(1, 802)
-    for pokemon in pokedex:
-        if int(pokemon['pokedex_number']) == random_index:
-            name = pokemon['name']
+    cont = True
+    while cont is True:
+        random_index = random.randint(1, 802)
+        for pokemon in pokedex:
+            if int(pokemon['pokedex_number']) == random_index:
+                name = pokemon['name']
+                if name != 'Ditto' or name != 'Unown' or name != 'Cosmog' or \
+                        name != 'Cosmoem':
+                    cont = False
 
-        for moveset in movesets:
-            if moveset['species'] == name:
-                moves = []
-                for i in range(1, 174):
-                    if moveset[f'move{i}'] != '':
-                        moves.append(moveset[f'move{i}'].strip())
+    for moveset in movesets:
+        if moveset['species'] == name:
+            moves = []
+            for i in range(1, 174):
+                if moveset[f'move{i}'] != '':
+                    moves.append(moveset[f'move{i}'].strip())
 
-                comp_move = pick_computer_moves(random.choice(moves))
+
+            comp_moves = []
+            for i in range(4):
                 while True:
-                    if comp_move.pwr == '0' or comp_move.pwr == '-':
-                        comp_move = pick_computer_moves(random.choice(moves))
+                    comp_move = pick_computer_moves(random.choice(moves))
+                    print(comp_move.name)
+                    if comp_move.pwr == '0' or comp_move.pwr == '—':
+                        pass
                     else:
-                        break
+                        if comp_move.name in comp_moves:
+                            pass
+                        else:
+                            comp_moves.append(comp_move)
+                            break
 
-                return pokemon_move_class.Pokemon(name, pokemon['type_1'], pokemon['type_2'], )
-
-pick_computer_pokemon()
+            return pokemon_move_class.Pokemon(name, pokemon['type_1'],
+                                              pokemon['type_2'],
+                                              pokemon['hp'], pokemon['atk'],
+                                              pokemon['spatk'],
+                                              pokemon['df'],
+                                              pokemon['spdf'],
+                                              pokemon['spd'], comp_moves[0],
+                                              comp_moves[1], comp_moves[2],
+                                              comp_moves[3])
 
 
 computers_pokemon = []
+for i in range(4):
+    computers_pokemon.append(pick_computer_pokemon())
+    print(computers_pokemon)
+    print(computers_pokemon[i].name)
+
