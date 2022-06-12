@@ -93,8 +93,10 @@ def return_pokemon(force=None):
             for pokemon in pokedex:
                 if int(pokemon['pokedex_number']) == random_index:
                     name = pokemon['name']
-                    if name != 'Ditto' or name != 'Unown' or name != 'Cosmog' or \
-                            name != 'Cosmoem':
+                    if name == 'Ditto' or name == 'Unown' or name == 'Cosmog' or \
+                            name == 'Cosmoem':
+                        pass
+                    else:
                         return pokemon['name']
     else:
         for pokemon in pokedex:
@@ -125,6 +127,7 @@ def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
         movesets = list(csv.DictReader(moveset_data))
 
     name = return_pokemon()
+    print(name)
 
     for moveset in movesets:
         if moveset['species'] == name:
