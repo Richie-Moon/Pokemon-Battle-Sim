@@ -575,14 +575,14 @@ Dialga,Steel,Dragon,100,120,150,120,100,90,483,4
 Palkia,Water,Dragon,90,120,150,100,120,100,484,4
 Heatran,Fire,Steel,91,90,130,106,106,77,485,4
 Regigigas,Normal,None,110,160,80,110,110,100,486,4
-Giratina Altered Forme,Ghost,Dragon,150,100,100,120,120,90,487,4
-Giratina Origin Forme,Ghost,Dragon,150,120,120,100,100,90,487,4
+Giratina (Altered) ,Ghost,Dragon,150,100,100,120,120,90,487,4
+Giratina (Origin),Ghost,Dragon,150,120,120,100,100,90,487,4
 Cresselia,Psychic,None,120,70,75,120,130,85,488,4
 Phione,Water,None,80,80,80,80,80,80,489,4
 Manaphy,Water,None,100,100,100,100,100,100,490,4
 Darkrai,Dark,None,70,90,135,90,90,125,491,4
-Shaymin Land Forme,Grass,None,100,100,100,100,100,100,492,4
-Shaymin Sky Forme,Grass,Flying,100,103,120,75,75,127,492,4
+Shaymin (Land),Grass,None,100,100,100,100,100,100,492,4
+Shaymin (Sky),Grass,Flying,100,103,120,75,75,127,492,4
 Arceus,Normal,None,120,120,120,120,120,120,493,4
 Victini,Psychic,Fire,100,100,100,100,100,100,494,5
 Snivy,Grass,None,45,45,45,55,55,63,495,5
@@ -866,11 +866,10 @@ Cutiefly,Bug,Fairy,40,45,55,40,40,84,742,7
 Ribombee,Bug,Fairy,60,55,95,60,70,124,743,7
 Rockruff,Rock,None,45,65,30,40,40,60,744,7
 Own Tempo Rockruff,Rock,None,45,65,30,40,40,60,744,7
-Lycanroc Midday Form,Rock,None,75,115,55,65,65,112,745,7
-Lycanroc Midnight Form,Rock,None,85,115,55,75,75,82,745,7
-Lycanroc Dusk Form,Rock,None,75,117,55,65,65,110,745,7
-Wishiwashi Solo Form,Water,None,45,20,25,20,25,40,746,7
-Wishiwashi School Form,Water,None,45,140,140,130,135,30,746,7
+Lycanroc (Midday),Rock,None,75,115,55,65,65,112,745,7
+Lycanroc (Midnight),Rock,None,85,115,55,75,75,82,745,7
+Wishiwashi,Water,None,45,20,25,20,25,40,746,7
+Wishiwashi (School),Water,None,45,140,140,130,135,30,746,7
 Mareanie,Poison,Water,50,53,43,62,52,45,747,7
 Toxapex,Poison,Water,50,63,53,152,142,35,748,7
 Mudbray,Ground,None,70,100,45,70,55,45,749,7

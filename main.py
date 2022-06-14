@@ -135,14 +135,17 @@ def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
             for i in range(1, 174):
                 if moveset[f'move{i}'] != '':
                     moves.append(moveset[f'move{i}'].strip())
-
+            print(moves)
             comp_moves = []
             for i in range(4):
+                count = 0
                 while True:
+                    print(count)
                     comp_move = pick_computer_moves(random.choice(moves))
-                    print(moves)
+                    if count > 50:
+                        pick_computer_pokemon()
                     if comp_move.pwr == '0' or comp_move.pwr == '—':
-                        pass
+                        count += 1
                     else:
                         if comp_move.name in comp_moves:
                             pass
@@ -161,7 +164,6 @@ def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
 
 
 computers_pokemon = []
-for i in range(4):
+for i in range(6):
     computers_pokemon.append(pick_computer_pokemon())
-    print(computers_pokemon)
     print(computers_pokemon[i].name)
