@@ -20,7 +20,7 @@ def calculate_dmg(poke1: pokemon_move_class.Pokemon,
     else:
         crit_dmg = 1
 
-    # All Pokémon levels are set to 50 (In competitive Pokemon.).
+    # All Pokémon levels are set to 50 (In competitive Pokemon).
     LEVEL = 50
 
     # Calculate the random part of the formula. It is a multiplier. A random
@@ -28,13 +28,15 @@ def calculate_dmg(poke1: pokemon_move_class.Pokemon,
     random_value = random.randint(85, 100) / 100
 
     # Calculate if the move is Special or Physical (Category) and set attack
-    # defence values based on the category.
+    # defence values based on the category. Effective stat calculation formula
+    # can be found here: https://pokemon.fandom.com/wiki/Statistics#Formula
+    IV = 31
     if move.category == 'Physical':
-        attack = int(poke1.atk)
-        defence = int(poke2.df)
-    else:
-        attack = int(poke1.spatk)
-        defence = int(poke2.spdf)
+        attack = int(0.01 * (2 * poke1.atk + IV) * LEVEL) + 5
+        defence = int(0.01 * (2 * poke2.df + IV) * LEVEL) + 5
+    elif move.category == 'Special':
+        attack = int(0.01 * (2 * poke1.spatk + IV) * LEVEL) + 5
+        defence = int(0.01 * (2 * poke2.spdf + IV) * LEVEL) + 5
 
     # Calculate whether the type of the move used is the same type as one of
     # the Pokémon types. This adds a 1.5x multiplier called Same Type Attack

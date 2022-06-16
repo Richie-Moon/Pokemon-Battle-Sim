@@ -83,6 +83,7 @@ def pick_pokemon(number) -> pokemon_move_class.Pokemon:
 #     picked_pokemon = pick_pokemon(i)
 #     users_pokemon.append(picked_pokemon)
 
+
 def return_pokemon(force=None):
     with open('pokedex.csv', mode='r') as data:
         pokedex = list(csv.DictReader(data))
@@ -106,11 +107,6 @@ def return_pokemon(force=None):
                        pokemon['spdf'], pokemon['spd']
 
 
-def return_move():
-    pass
-    # TODO this. return random move
-
-
 def pick_computer_moves(move_name) -> pokemon_move_class.Move:
     with open('moves.csv', mode='r') as move_data:
         moves = list(csv.DictReader(move_data))
@@ -122,7 +118,7 @@ def pick_computer_moves(move_name) -> pokemon_move_class.Move:
                                            move['accuracy'])
 
 
-def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
+def pick_computer_pokemon():
     with open('movesets.csv', mode='r') as moveset_data:
         movesets = list(csv.DictReader(moveset_data))
 
@@ -140,10 +136,9 @@ def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
             for i in range(4):
                 count = 0
                 while True:
-                    print(count)
                     comp_move = pick_computer_moves(random.choice(moves))
-                    if count > 50:
-                        pick_computer_pokemon()
+                    if count >= 50:
+                        return
                     if comp_move.pwr == '0' or comp_move.pwr == '—':
                         count += 1
                     else:
@@ -164,6 +159,10 @@ def pick_computer_pokemon() -> pokemon_move_class.Pokemon:
 
 
 computers_pokemon = []
-for i in range(6):
-    computers_pokemon.append(pick_computer_pokemon())
-    print(computers_pokemon[i].name)
+while len(computers_pokemon) < 6:
+    comp_pokemon = pick_computer_pokemon()
+    if comp_pokemon is not None:
+        computers_pokemon.append(comp_pokemon)
+    else:
+        pass
+

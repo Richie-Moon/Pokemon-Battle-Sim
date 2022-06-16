@@ -575,7 +575,7 @@ Dialga,Steel,Dragon,100,120,150,120,100,90,483,4
 Palkia,Water,Dragon,90,120,150,100,120,100,484,4
 Heatran,Fire,Steel,91,90,130,106,106,77,485,4
 Regigigas,Normal,None,110,160,80,110,110,100,486,4
-Giratina (Altered) ,Ghost,Dragon,150,100,100,120,120,90,487,4
+Giratina (Altered),Ghost,Dragon,150,100,100,120,120,90,487,4
 Giratina (Origin),Ghost,Dragon,150,120,120,100,100,90,487,4
 Cresselia,Psychic,None,120,70,75,120,130,85,488,4
 Phione,Water,None,80,80,80,80,80,80,489,4
@@ -641,8 +641,8 @@ Cottonee,Grass,Fairy,40,27,37,60,50,66,546,5
 Whimsicott,Grass,Fairy,60,67,77,85,75,116,547,5
 Petilil,Grass,None,45,35,70,50,50,30,548,5
 Lilligant,Grass,None,70,60,110,75,75,90,549,5
-Basculin Red-Striped Form,Water,None,70,92,80,65,55,98,550,5
-Basculin Blue-Striped Form,Water,None,70,92,80,65,55,98,550,5
+Basculin (Red),Water,None,70,92,80,65,55,98,550,5
+Basculin (Blue),Water,None,70,92,80,65,55,98,550,5
 Sandile,Ground,Dark,50,72,35,35,35,65,551,5
 Krokorok,Ground,Dark,60,82,45,45,45,74,552,5
 Krookodile,Ground,Dark,95,117,65,80,70,92,553,5
@@ -817,23 +817,15 @@ Goodra,Dragon,None,90,100,110,70,150,80,706,6
 Klefki,Steel,Fairy,57,80,80,91,87,75,707,6
 Phantump,Ghost,Grass,43,70,50,48,60,38,708,6
 Trevenant,Ghost,Grass,85,110,65,76,82,56,709,6
-Pumpkaboo Average Size,Ghost,Grass,49,66,44,70,55,51,710,6
-Pumpkaboo Small Size,Ghost,Grass,44,66,44,70,55,56,710,6
-Pumpkaboo Large Size,Ghost,Grass,54,66,44,70,55,46,710,6
-Pumpkaboo Super Size,Ghost,Grass,59,66,44,70,55,41,710,6
-Gourgeist Average Size,Ghost,Grass,65,90,58,122,75,84,711,6
-Gourgeist Small Size,Ghost,Grass,55,85,58,122,75,99,711,6
-Gourgeist Large Size,Ghost,Grass,75,95,58,122,75,69,711,6
-Gourgeist Super Size,Ghost,Grass,85,100,58,122,75,54,711,6
+Pumpkaboo,Ghost,Grass,49,66,44,70,55,51,710,6
+Gourgeist,Ghost,Grass,65,90,58,122,75,84,711,6
 Bergmite,Ice,None,55,69,32,85,35,28,712,6
 Avalugg,Ice,None,95,117,44,184,46,28,713,6
 Noibat,Flying,Dragon,40,30,45,35,40,55,714,6
 Noivern,Flying,Dragon,85,70,97,80,80,123,715,6
 Xerneas,Fairy,None,126,131,131,95,98,99,716,6
 Yveltal,Dark,Flying,126,131,131,95,98,99,717,6
-Zygarde 50% Forme,Dragon,Ground,108,100,81,121,95,95,718,6
-Zygarde 10% Forme,Dragon,Ground,54,100,61,71,85,115,718,6
-Zygarde Complete Forme,Dragon,Ground,216,100,91,121,95,85,718,6
+Zygarde,Dragon,Ground,216,100,91,121,95,85,718,6
 Diancie,Rock,Fairy,50,100,100,150,150,50,719,6
 Mega Diancie,Rock,Fairy,50,160,160,110,110,110,719,6
 Hoopa Hoopa Confined,Psychic,Ghost,80,110,150,60,130,70,720,6
