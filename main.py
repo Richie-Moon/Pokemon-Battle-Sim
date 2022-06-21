@@ -78,7 +78,25 @@ def pick_pokemon(number) -> pokemon_move_class.Pokemon:
             print('No Pokemon found. ')
 
 
-# users_pokemon = []
+users_pokemon = [pokemon_move_class.Pokemon('Greninja', 'Water', 'Dark', '1',
+                                            '1', '1', '1', '1', '1',
+                                            None, None, None, None),
+                 pokemon_move_class.Pokemon('Pikachu', 'Electric', 'None', '1',
+                                            '1', '1', '1', '1', '1',
+                                            None, None, None, None),
+                 pokemon_move_class.Pokemon('Pichu', 'Electric', 'None', '1',
+                                            '1', '1', '1', '1', '1',
+                                            None, None, None, None),
+                 pokemon_move_class.Pokemon('Charizard', 'Fire', 'Flying', '1',
+                                            '1', '1', '1', '1', '1',
+                                            None, None, None, None),
+                 pokemon_move_class.Pokemon('Venusaur', 'Grass', 'Poison', '1',
+                                            '1', '1', '1', '1', '1',
+                                            None, None, None, None),
+                 pokemon_move_class.Pokemon('Gengar', 'Ghost', 'Poison', '1',
+                                            '1', '1', '1', '1', '1',
+                                            None, None, None, None)
+                 ]
 # for i in range(1, 7):
 #     picked_pokemon = pick_pokemon(i)
 #     users_pokemon.append(picked_pokemon)
@@ -94,8 +112,8 @@ def return_pokemon(force=None):
             for pokemon in pokedex:
                 if int(pokemon['pokedex_number']) == random_index:
                     name = pokemon['name']
-                    if name == 'Ditto' or name == 'Unown' or name == 'Cosmog' or \
-                            name == 'Cosmoem':
+                    if name == 'Ditto' or name == 'Unown' or name == 'Cosmog' \
+                            or name == 'Cosmoem':
                         pass
                     else:
                         return pokemon['name']
@@ -165,4 +183,39 @@ while len(computers_pokemon) < 6:
         computers_pokemon.append(comp_pokemon)
     else:
         pass
+
+# Main Battle loop
+while True:
+    print('Your Pokemon: ')
+    for pokemon in users_pokemon:
+        print(f'{users_pokemon.index(pokemon) + 1}. ' + pokemon.name)
+
+    print('\nOpponents Pokemon: ')
+    for cpu_pokemon in computers_pokemon:
+        print(f"{computers_pokemon.index(cpu_pokemon) + 1}. " +
+              cpu_pokemon.name)
+
+    while True:
+        try:
+            current_index = int(input('\nWhich Pokemon would you like to send '
+                                      'out? (1-6): '))
+            index = current_index - 1
+            if 1 <= current_index <= 6:
+                current_pokemon = users_pokemon[index]
+                print(f'You sent out {current_pokemon.name}!\n')
+                break
+            else:
+                print("Please enter a valid integer. ")
+        except ValueError:
+            print("Please enter a valid integer. ")
+
+    # Prints the pokemon name and the health in line.
+    print(f"{current_pokemon.name}" + str(" " * (20 - len(
+        current_pokemon.name))) + "Health: " + current_pokemon.hp)
+
+    while True:
+
+        break
+    break
+
 
