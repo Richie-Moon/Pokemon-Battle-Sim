@@ -78,9 +78,14 @@ def pick_pokemon(number) -> pokemon_move_class.Pokemon:
             print('No Pokemon found. ')
 
 
+move1 = pokemon_move_class.Move('Surf', 90, "Water", 'Special', 100)
+move2 = pokemon_move_class.Move('Night Slash', 70, 'Dark', 'Physical', 100)
+move3 = pokemon_move_class.Move('Hydro Pump', 110, 'Water', 'Physical', 80)
+move4 = pokemon_move_class.Move("Ice Beam", 90, 'Ice', 'Special', 100)
+
 users_pokemon = [pokemon_move_class.Pokemon('Greninja', 'Water', 'Dark', '1',
                                             '1', '1', '1', '1', '1',
-                                            None, None, None, None),
+                                            move1, move2, move3, move4),
                  pokemon_move_class.Pokemon('Pikachu', 'Electric', 'None', '1',
                                             '1', '1', '1', '1', '1',
                                             None, None, None, None),
@@ -97,6 +102,8 @@ users_pokemon = [pokemon_move_class.Pokemon('Greninja', 'Water', 'Dark', '1',
                                             '1', '1', '1', '1', '1',
                                             None, None, None, None)
                  ]
+
+
 # for i in range(1, 7):
 #     picked_pokemon = pick_pokemon(i)
 #     users_pokemon.append(picked_pokemon)
@@ -194,7 +201,7 @@ while True:
     for cpu_pokemon in computers_pokemon:
         print(f"{computers_pokemon.index(cpu_pokemon) + 1}. " +
               cpu_pokemon.name)
-
+    cpu_current = computers_pokemon[0]
     while True:
         try:
             current_index = int(input('\nWhich Pokemon would you like to send '
@@ -202,7 +209,8 @@ while True:
             index = current_index - 1
             if 1 <= current_index <= 6:
                 current_pokemon = users_pokemon[index]
-                print(f'You sent out {current_pokemon.name}!\n')
+                print(f'You sent out {current_pokemon.name}!')
+                print(f"Opponent sent out {cpu_current.name}!\n")
                 break
             else:
                 print("Please enter a valid integer. ")
@@ -213,9 +221,29 @@ while True:
     print(f"{current_pokemon.name}" + str(" " * (20 - len(
         current_pokemon.name))) + "Health: " + current_pokemon.hp)
 
+    print(f"{cpu_current.name}" + str(" " * (20 - len(cpu_current.name))) +
+          'Health: ' + cpu_current.hp)
+
     while True:
+        print("\nYour Moves")
+        print('1.', current_pokemon.move1.name + str(" " * (20 - len(
+            current_pokemon.move1.name))) + "Power: " +
+              str(current_pokemon.move1.pwr))
+        print('2.', current_pokemon.move2.name + str(" " * (20 - len(
+            current_pokemon.move2.name))) + 'Power: ' +
+              str(current_pokemon.move2.pwr))
+        print('3.', current_pokemon.move3.name + str(" " * (20 - len(
+            current_pokemon.move3.name))) + 'Power: ' +
+              str(current_pokemon.move3.pwr))
+        print('4.', current_pokemon.move4.name + str(" " * (20 - len(
+            current_pokemon.move4.name))) + 'Power: ' +
+              str(current_pokemon.move4.pwr))
+
+        while True:
+            try:
+                move = int(input('Your Move (1-4): '))
+            except ValueError:
+                print("Please enter a valid integer. ")
 
         break
     break
-
-
