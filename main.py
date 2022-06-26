@@ -83,8 +83,8 @@ move2 = pokemon_move_class.Move('Night Slash', 70, 'Dark', 'Physical', 100)
 move3 = pokemon_move_class.Move('Hydro Pump', 110, 'Water', 'Physical', 80)
 move4 = pokemon_move_class.Move("Ice Beam", 90, 'Ice', 'Special', 100)
 
-users_pokemon = [pokemon_move_class.Pokemon('Greninja', 'Water', 'Dark', '1',
-                                            '1', '1', '1', '1', '1',
+users_pokemon = [pokemon_move_class.Pokemon('Greninja', 'Water', 'Dark', 1,
+                                            1, 1, 1, 1, 1,
                                             move1, move2, move3, move4),
                  pokemon_move_class.Pokemon('Pikachu', 'Electric', 'None', '1',
                                             '1', '1', '1', '1', '1',
@@ -127,9 +127,10 @@ def return_pokemon(force=None):
     else:
         for pokemon in pokedex:
             if pokemon['name'] == force:
-                return pokemon['type_1'], pokemon['type_2'], pokemon['hp'], \
-                       pokemon['atk'], pokemon['spatk'], pokemon['df'], \
-                       pokemon['spdf'], pokemon['spd']
+                return pokemon['type_1'], pokemon['type_2'], \
+                       int(pokemon['hp']), int(pokemon['atk']), \
+                       int(pokemon['spatk']), int(pokemon['df']), \
+                       int(pokemon['spdf']), int(pokemon['spd'])
 
 
 def pick_computer_moves(move_name) -> pokemon_move_class.Move:
@@ -164,12 +165,14 @@ def pick_computer_pokemon():
                     comp_move = pick_computer_moves(random.choice(moves))
                     if count >= 50:
                         return
-                    if comp_move.pwr == '0' or comp_move.pwr == '—':
+                    if comp_move.pwr == '0' or comp_move.pwr == '—' or \
+                            comp_move.pwr == 'â€”':
                         count += 1
                     else:
                         if comp_move.name in comp_moves:
                             pass
                         else:
+                            comp_move.pwr = int(comp_move.pwr)
                             comp_moves.append(comp_move)
                             moves.remove(comp_move.name)
                             break
@@ -219,10 +222,10 @@ while True:
 
     # Prints the pokemon name and the health in line.
     print(f"{current_pokemon.name}" + str(" " * (20 - len(
-        current_pokemon.name))) + "Health: " + current_pokemon.hp)
+        current_pokemon.name))) + "Health: " + str(current_pokemon.hp))
 
     print(f"{cpu_current.name}" + str(" " * (20 - len(cpu_current.name))) +
-          'Health: ' + cpu_current.hp)
+          'Health: ' + str(cpu_current.hp))
 
     while True:
         print("\nYour Moves")
@@ -242,8 +245,51 @@ while True:
         while True:
             try:
                 move = int(input('Your Move (1-4): '))
+                if 1 <= move <= 4:
+                    if move == 1:
+                        move_choice = current_pokemon.move1
+                    elif move == 2:
+                        move_choice = current_pokemon.move2
+                    elif move == 3:
+                        move_choice = current_pokemon.move3
+                    elif move == 4:
+                        move_choice = current_pokemon.move4
+                    break
+                else:
+                    print('Please enter a valid integer. ')
             except ValueError:
                 print("Please enter a valid integer. ")
+
+        if current_pokemon.spd > cpu_current.spd:
+            print(f"\n{current_pokemon.name} used {move_choice.name}")
+            damage_dealt = damage_calc.calculate_dmg(current_pokemon,
+                                                     cpu_current,
+                                                     move_choice)
+            print(f"\nIt dealt {damage_dealt} damage! ")
+            cpu_current.hp -= damage_dealt
+
+            if cpu_current.hp <= 0:
+                cpu_current.hp = 0
+                print(f"{cpu_current.name} fainted!")
+            else:
+                pass
+        elif current_pokemon.spd < cpu_current.spd:
+            random_move = cpu_current.random_move()
+            print(f"\n{cpu_current.name} used {random_move.name1}")
+            damage_dealt = damage_calc.calculate_dmg(cpu_current,
+                                                     current_pokemon,
+                                                     random_move)
+            print(f"\nIt dealt {damage_dealt} damage! ")
+            current_pokemon.hp -= damage_dealt
+
+            if current_pokemon.hp <= 0:
+                current_pokemon.hp = 0
+                print(f"{current_pokemon.name} fainted!")
+                users_pokemon.remove(current_pokemon)
+
+            if len(users_pokemon) == 0:
+                print("You have no more Pokemon that can Battle!")
+                print("Match Result: You Lose...")
 
         break
     break
