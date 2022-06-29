@@ -7,7 +7,10 @@ class Pokemon:
         self.name = name
         self.type1 = type1
         self.type2 = type2
-        self.hp = hp
+
+        # Effective Stat calculation formula for HP
+        # can be found here: https://pokemon.fandom.com/wiki/Statistics#Formula
+        self.hp = int(0.01 * (2 * hp + 31) * 50) + 60
         self.atk = atk
         self.spatk = spatk
         self.df = df

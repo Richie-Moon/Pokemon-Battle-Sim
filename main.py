@@ -229,12 +229,7 @@ def print_pokemon():
               cpu_pokemon.name)
 
 
-# Main Battle loop
-print_pokemon()
-cpu_current = computers_pokemon[0]
-current_pokemon = send_out_pokemon()
-
-while True:
+def print_hp():
     # Prints the pokemon name and the health in line.
     print(f"{current_pokemon.name}" + str(" " * (20 - len(
         current_pokemon.name))) + "Health: " + str(current_pokemon.hp))
@@ -242,6 +237,28 @@ while True:
     print(f"{cpu_current.name}" + str(" " * (20 - len(cpu_current.name))) +
           'Health: ' + str(cpu_current.hp))
 
+
+def switch_pokemon() -> pokemon_move_class.Pokemon:
+    while True:
+        try:
+            print_pokemon()
+            user_switch = int(input(f"What Pokemon would you like to switch to"
+                                    f"? (1-{len(users_pokemon)}): ")) - 1
+            if 1 <= user_switch <= len(users_pokemon):
+                print(f"You sent out {users_pokemon[user_switch].name}!")
+                return users_pokemon[user_switch]
+        except ValueError:
+            print("Please enter a valid integer .")
+        print("That Pokemon isn't in your party")
+
+
+# Main Battle loop
+print_pokemon()
+cpu_current = computers_pokemon[0]
+current_pokemon = send_out_pokemon()
+
+while True:
+    print_hp()
     while True:
         print("\nYour Moves")
         print('1.', current_pokemon.move1.name + str(" " * (20 - len(
@@ -311,6 +328,17 @@ while True:
                 print_pokemon()
                 current_pokemon = send_out_pokemon()
                 break
+            print_hp()
+            while True:
+                switch = input("\nWould you like to switch another Pokemon "
+                               "in (y/n): ")
+                if switch == 'y':
+                    current_pokemon = switch_pokemon()
+                    break
+                elif switch == 'n':
+                    break
+                else:
+                    print("\nPlease enter either 'y' or 'n'. ")
 
         elif current_pokemon.spd < cpu_current.spd:
             random_move = cpu_current.random_move()
@@ -340,14 +368,25 @@ while True:
                                                      move_choice)
             print(f"It dealt {damage_dealt} damage! \n")
             cpu_current.hp -= damage_dealt
-            if current_pokemon.hp <= 0:
-                current_pokemon.hp = 0
-                print(f"{current_pokemon.name} fainted...\n")
-                users_pokemon.remove(current_pokemon)
-                if len(users_pokemon) == 0:
-                    print("You have no more pokemon that can battle. ")
-                    print('Match Result: You lose...')
+            if cpu_current.hp <= 0:
+                cpu_current.hp = 0
+                print(f"{cpu_current.name} fainted...\n")
+                computers_pokemon.remove(cpu_current)
+                if len(computers_pokemon) == 0:
+                    print("Opponent has no more Pokemon that can battle.  ")
+                    print('Match Result: You win!')
                     quit()
                 print_pokemon()
                 current_pokemon = send_out_pokemon()
-            break
+                break
+            print_hp()
+            while True:
+                switch = input("\nWould you like to switch another Pokemon "
+                               "in (y/n): ")
+                if switch == 'y':
+                    current_pokemon = switch_pokemon()
+                    break
+                elif switch == 'n':
+                    break
+                else:
+                    print("\nPlease enter either 'y' or 'n'. ")
