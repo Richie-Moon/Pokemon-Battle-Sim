@@ -34,7 +34,7 @@ def calculate_dmg(poke1: pokemon_move_class.Pokemon,
     if move.category == 'Physical':
         attack = int(0.01 * (2 * poke1.atk + IV) * LEVEL) + 5
         defence = int(0.01 * (2 * poke2.df + IV) * LEVEL) + 5
-    elif move.category == 'Special':
+    else:
         attack = int(0.01 * (2 * poke1.spatk + IV) * LEVEL) + 5
         defence = int(0.01 * (2 * poke2.spdf + IV) * LEVEL) + 5
 

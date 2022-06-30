@@ -34,9 +34,10 @@ class Pokemon:
 
 
 class Move:
-    def __init__(self, name, pwr, typ, category, accuracy):
+    def __init__(self, name, pwr, typ, category, accuracy, pp):
         self.name = name
         self.pwr = pwr
         self.category = category
         self.typ = typ
         self.accuracy = accuracy
+        self.pp = pp

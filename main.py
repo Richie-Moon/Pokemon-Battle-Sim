@@ -39,9 +39,9 @@ def pick_moves(pokemon, number: int, used_moves: list) -> pokemon_move_class. \
                             return pokemon_move_class.Move(
                                 pokemon_move['name'],
                                 int(pokemon_move['power']),
-                                pokemon_move['type'],
-                                pokemon_move['category'],
-                                pokemon_move['accuracy'])
+                                pokemon_move['type'], pokemon_move['category'],
+                                pokemon_move['accuracy'],
+                                int(pokemon_move['pp']))
                 else:
                     print("That move doesn't exist. \n")
 
@@ -146,7 +146,7 @@ def pick_computer_moves(move_name) -> pokemon_move_class.Move:
         if move['name'] == move_name:
             return pokemon_move_class.Move(move['name'], move['power'],
                                            move['type'], move['category'],
-                                           move['accuracy'])
+                                           move['accuracy'], move['pp'])
 
 
 def pick_computer_pokemon():
