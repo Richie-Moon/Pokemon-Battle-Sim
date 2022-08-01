@@ -11,6 +11,7 @@ class Pokemon:
         # Effective Stat calculation formula for HP
         # can be found here: https://pokemon.fandom.com/wiki/Statistics#Formula
         self.hp = int(0.01 * (2 * hp + 31) * 50) + 60
+        self.ORIGINAL_HP = int(0.01 * (2 * hp + 31) * 50) + 60
         self.atk = atk
         self.spatk = spatk
         self.df = df
@@ -32,6 +33,17 @@ class Pokemon:
         if random_int == 4:
             return self.move4
 
+    def reset(self):
+        self.hp = self.ORIGINAL_HP
+        self.move1.pp = self.move1.ORIGINAL_PP
+        self.move2.pp = self.move2.ORIGINAL_PP
+        self.move3.pp = self.move3.ORIGINAL_PP
+        self.move4.pp = self.move4.ORIGINAL_PP
+
+    def list_of_moves(self):
+        moves = [self.move1, self.move2, self.move3, self.move4]
+        return moves
+
 
 class Move:
     def __init__(self, name, pwr, typ, category, accuracy, pp):
@@ -41,3 +53,4 @@ class Move:
         self.typ = typ
         self.accuracy = accuracy
         self.pp = pp
+        self.ORIGINAL_PP = pp

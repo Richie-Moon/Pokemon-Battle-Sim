@@ -8,15 +8,16 @@ import pokemon_types
 # ZMove, Targets, weather, etc).
 def calculate_dmg(poke1: pokemon_move_class.Pokemon,
                   poke2: pokemon_move_class.Pokemon,
-                  move: pokemon_move_class.Move):
-    """Calculate the damgage that 1 pokemon would deal to another, using the
+                  move: pokemon_move_class.Move, print_info: bool):
+    """Calculate the damage that 1 pokemon would deal to another, using the
     damage formula. """
 
     # Calculate the critical hit damage multiplier.
     crit_chance = random.randint(1, 25)
     if crit_chance == 1:
         crit_dmg = 1.5
-        print("Crit!")
+        if print_info is True:
+            print("Crit!")
     else:
         crit_dmg = 1
 
@@ -49,10 +50,11 @@ def calculate_dmg(poke1: pokemon_move_class.Pokemon,
     # Calculate Type Effectiveness using pokemon_types.py
     type_multiplier = pokemon_types.type_multiplier(move.typ, poke2.type1,
                                                     poke2.type2)
-    if type_multiplier >= 2:
-        print("Super Effective!")
-    elif type_multiplier <= 0.5:
-        print("Not very effective...")
+    if print_info is True:
+        if type_multiplier >= 2:
+            print("Super Effective!")
+        elif type_multiplier <= 0.5:
+            print("Not very effective...")
 
     # damage is calculated line by line as after each calculation, all number
     # are rounded down to an integer. First line is an int as all values are
