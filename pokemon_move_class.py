@@ -41,8 +41,7 @@ class Pokemon:
         self.move4.pp = self.move4.ORIGINAL_PP
 
     def list_of_moves(self):
-        moves = [self.move1, self.move2, self.move3, self.move4]
-        return moves
+        return [self.move1, self.move2, self.move3, self.move4]
 
 
 class Move:

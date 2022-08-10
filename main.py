@@ -164,7 +164,7 @@ def pick_computer_pokemon():
 
 def create_users_pokemon():
     users_pokemon = []
-    for i in range(1, 3):
+    for i in range(1, 4):
         picked_pokemon = pick_pokemon(i)
         users_pokemon.append(picked_pokemon)
     return users_pokemon
@@ -238,6 +238,21 @@ def switch_pokemon() -> pokemon_move_class.Pokemon:
         print("That Pokemon isn't in your party")
 
 
+def receive_money() -> int:
+    if len(users_pokemon_copy) == 1:
+        return random.randint(5000, 10000)
+    elif len(users_pokemon_copy) == 2:
+        return random.randint(4000, 8000)
+    elif len(users_pokemon_copy) == 3:
+        return random.randint(3000, 6000)
+    elif len(users_pokemon_copy) == 4:
+        return random.randint(2000, 4000)
+    elif len(users_pokemon_copy) == 5:
+        return random.randint(1000, 2000)
+    elif len(users_pokemon_copy) == 6:
+        return random.randint(500, 1000)
+
+
 # Main Battle loop
 def battle(name, opponent_name):
     global money
@@ -252,6 +267,9 @@ def battle(name, opponent_name):
         print("You have no Pokemon that can battle! ")
         return
 
+    print("""\n==============
+-    Battle    -
+==============""")
     print_pokemon()
     cpu_current = computers_pokemon_copy[0]
     current_pokemon = send_out_pokemon(opponent_name, cpu_current)
@@ -306,7 +324,7 @@ def battle(name, opponent_name):
                         print(f"{opponent_name} has no more Pokemon that can "
                               f"battle.")
                         print("Match Result: You Win!\n")
-                        money_received = random.randint(1000, 2500)
+                        money_received = receive_money()
                         print(f"You received {money_received}!")
                         money += money_received
                         return
@@ -322,7 +340,7 @@ def battle(name, opponent_name):
                         cpu_current, current_pokemon, move, False)})
 
                 sorted_moves = sorted(move_damages.items(), key=lambda
-                    item: item[1], reverse=True)
+                                      item: item[1], reverse=True)
                 random_choice = int(random.uniform(1, 100))
 
                 if 1 <= random_choice <= 40:
@@ -373,7 +391,7 @@ def battle(name, opponent_name):
 
                 sorted_moves = sorted(move_damages.items(),
                                       key=lambda item: item[1], reverse=True)
-                random_choice = int(random.uniform(1, 100))
+                random_choice = random.randint(1, 100)
 
                 if 1 <= random_choice <= 40:
                     picked_move = sorted_moves[0][0]
@@ -419,7 +437,7 @@ def battle(name, opponent_name):
                         print(f"{opponent_name} has no more Pokemon that can"
                               f" battle. ")
                         print('Match Result: You win!')
-                        money_received = random.randint(1000, 2500)
+                        money_received = receive_money()
                         print(f"You received {money_received}!")
                         money += money_received
                         return
@@ -448,16 +466,22 @@ def print_all_hp():
     print()
 
 
-def pick_heal_pokemon(healing: int):
+def heal_pokemon(healing: int = None):
     try:
         print_all_hp()
         choice = int(input("Which Pokemon would you like to heal? (1-6): "))
         pokemon = users_pokemon[choice - 1]
         if pokemon.hp == pokemon.ORIGINAL_HP:
             print("This Pokemon is already at full HP. ")
+            return False
         elif pokemon.hp == 0:
             print("This Pokemon has fainted. Use a revive or Max Revive. ")
+            return False
         else:
+            if healing is None:
+                pokemon.reset()
+                print(f"Fully healed {pokemon.name}! ")
+                return
             pokemon.hp += healing
             if pokemon.hp > pokemon.ORIGINAL_HP:
                 diff = pokemon.hp - pokemon.ORIGINAL_HP
@@ -467,9 +491,30 @@ def pick_heal_pokemon(healing: int):
                 print(f"Healed {pokemon.name} by {healing} HP. ")
     except ValueError or IndexError:
         print("Please enter a valid integer. ")
+        return False
+
+
+def revive_pokemon(max_revive: bool = False):
+    print_all_hp()
+    choice = int(input("Which Pokemon would you like to heal? (1-6): "))
+    pokemon = users_pokemon[choice - 1]
+    if pokemon.hp != 0:
+        print(f"{pokemon.name} has not fainted! ")
+        return False
+    else:
+        if max_revive is False:
+            healing_amount = int(pokemon.ORIGINAL_HP / 2)
+            pokemon.hp += healing_amount
+            print(f"{pokemon.name} was revived, and {healing_amount} HP "
+                  f"was restored!")
+        else:
+            pokemon.reset()
+            print(f"{pokemon.name} was revived and fully healed!")
 
 
 def shop():
+    global money
+    global username
     print("""\n==============
 -    Shop    -
 ==============""")
@@ -497,7 +542,7 @@ def shop():
 
     while True:
         count = 0
-        print(f"You have {money} Poke-dollars. \n")
+        print(f"You have ${money} Poke-dollars. \n")
         for item in items:
             print(f"{count + 1}. {item['name'].ljust(17)}"
                   f"{item['description'].ljust(60)}${item['price']}")
@@ -505,13 +550,31 @@ def shop():
         print('\nq. Return to Main Menu. ')
 
         try:
-            purchase = int(input("\nWhat would you like to buy (1-7): "))
+            purchase = int(input(f"\nWhat would you like to buy "
+                                 f"(1-{len(items)}): "))
 
             if items[purchase - 1]['price'] > money:
                 print("This item is too expensive! ")
             elif purchase == 1 or purchase == 2 or purchase == 3:
-                pick_heal_pokemon(items[purchase-1]['healing'])
-
+                healed = heal_pokemon(items[purchase - 1]['healing'])
+                if healed is not False:
+                    money -= items[purchase - 1]['price']
+            elif purchase == 4:
+                healed = heal_pokemon()
+                if healed is not False:
+                    money -= items[3]['price']
+            elif purchase == 5:
+                revived = revive_pokemon()
+                if revived is not False:
+                    money -= items[4]['price']
+            elif purchase == 6:
+                revived = revive_pokemon(True)
+                if revived is not True:
+                    money -= items[5]['price']
+            elif purchase == 7:
+                print("You purchased the BATTLER'S CROWN!!!\n")
+                username = username + ' 👑'
+                print(f"Your name will now be {username}\n")
         except ValueError:
             return
 
@@ -552,7 +615,6 @@ username = input("Enter your name: ")
 money = 0
 
 users_pokemon = create_users_pokemon()
-shop()
 
 while True:
     name_index = random.randint(1, len(names))
