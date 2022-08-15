@@ -587,15 +587,21 @@ def print_menu(opponent_name):
     print()
     for i in range(len(menu_options)):
         print(f"{i + 1}. {menu_options[i]}")
+    print('Q. Quit the program. ')
     while True:
+        choice = input("Choice (1-2): ").lower()
         try:
-            choice = int(input("Choice (1-2): "))
+            choice = int(choice)
             if 1 <= choice <= len(menu_options):
                 return choice
             else:
                 print("Please enter a valid integer. ")
         except ValueError:
-            print("Please enter a valid integer. ")
+            if choice == 'q':
+                print("Thank You for playing Pokemon!")
+                quit()
+            else:
+                print("Please enter a valid integer. ")
 
 
 def main():

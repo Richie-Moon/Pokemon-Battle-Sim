@@ -13,13 +13,14 @@ def calculate_dmg(poke1: pokemon_move_class.Pokemon,
     damage formula. """
 
     # Calculate the critical hit damage multiplier.
-    crit_chance = random.randint(1, 25)
-    if crit_chance == 1:
-        crit_dmg = 1.5
-        if print_info is True:
-            print("Crit!")
-    else:
+    if print_info is False:
         crit_dmg = 1
+    else:
+        crit_chance = random.randint(1, 25)
+        if crit_chance == 1:
+            crit_dmg = 1.5
+        else:
+            crit_dmg = 1
 
     # All Pokémon levels are set to 50 (In competitive Pokemon).
     LEVEL = 50
