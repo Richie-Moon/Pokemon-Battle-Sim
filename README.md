@@ -1,5 +1,10 @@
-Legal Info:
+# Pokemon Teal Battle Simulator
 
-© 2022 Pokémon. © 1995–2022 Nintendo/Creatures Inc./GAME FREAK inc. Pokémon, Pokémon character names, Nintendo Switch, Nintendo 3DS, Nintendo DS, Wii, Wii U, and WiiWare are trademarks of Nintendo. The YouTube logo is a trademark of Google Inc. Other trademarks are the property of their respective owners.
+## Instructions
+1. Click on the green 'Code' button in the top right 
 
-Distribution in any form and any channels now known or in the future of derivative works based on the copyrighted property trademarks, service marks, trade names and other proprietary property (Fan Art) of The Pokémon Company International, Inc., its affiliates and licensors (Pokémon) constitutes a royalty-free, non-exclusive, irrevocable, transferable, sub-licensable, worldwide license from the Fan Art's creator to Pokémon to use, transmit, copy, modify, and display Fan Art (and its derivatives) for any purpose. No further consideration or compensation of any kind will be given for any Fan Art. Fan Art creator gives up any claims that the use of the Fan Art violates any of their rights, including moral rights, privacy rights, proprietary rights publicity rights, rights to credit for material or ideas or any other right, including the right to approve the way such material is used. In no uncertain terms, does Pokémon's use of Fan Art constitute a grant to Fan Art's creator to use the Pokémon intellectual property or Fan Art beyond a personal, noncommercial home use.
+![image](https://user-images.githubusercontent.com/66343445/184556783-5fafc2ea-6712-41bb-bc21-992bbb0811f1.png)
+
+2. Then, click 'Download ZIP'. 
+3. Extract the ZIP file. 
+4. Double click to run the `main.py` file. 
