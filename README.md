@@ -7,3 +7,4 @@
 
 2. Then, click 'Download ZIP'. 
 3. Extract the ZIP file. 
+4. Double click to run the `main.py` file. 
