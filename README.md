@@ -1,5 +1,8 @@
 # Pokemon Teal Battle Simulator
 
+## Requirements
+You will need python3 installed on your computer. You can get it from https://www.python.org/downloads/
+
 ## Instructions
 1. Click on the green 'Code' button in the top right 
 
@@ -8,3 +11,4 @@
 2. Then, click 'Download ZIP'. 
 3. Extract the ZIP file. 
 4. Double click to run the `main.py` file. 
+5. Follow the instructions on-screen. 
