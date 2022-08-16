@@ -325,7 +325,7 @@ def battle(name, opponent_name):
                               f"battle.")
                         print("Match Result: You Win!\n")
                         money_received = receive_money()
-                        print(f"You received {money_received}!")
+                        print(f"You received ${money_received}!")
                         money += money_received
                         return
                     cpu_current = computers_pokemon_copy[0]
@@ -438,7 +438,7 @@ def battle(name, opponent_name):
                               f" battle. ")
                         print('Match Result: You win!')
                         money_received = receive_money()
-                        print(f"You received {money_received}!")
+                        print(f"You received ${money_received}!")
                         money += money_received
                         return
                     cpu_current = computers_pokemon_copy[0]
@@ -470,7 +470,10 @@ def heal_pokemon(healing: int = None):
     try:
         print_all_hp()
         choice = int(input("Which Pokemon would you like to heal? (1-6): "))
-        pokemon = users_pokemon[choice - 1]
+        try:
+            pokemon = users_pokemon[choice - 1]
+        except IndexError:
+            return print("Please enter a valid number. ")
         if pokemon.hp == pokemon.ORIGINAL_HP:
             print("This Pokemon is already at full HP. ")
             return False
