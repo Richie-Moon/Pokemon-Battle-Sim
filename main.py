@@ -123,7 +123,6 @@ def pick_computer_pokemon():
         movesets = list(csv.DictReader(moveset_data))
 
     name = return_pokemon()
-    print(name)
 
     for moveset in movesets:
         if moveset['species'] == name:
@@ -131,8 +130,7 @@ def pick_computer_pokemon():
             for i in range(1, 174):
                 if moveset[f'move{i}'] != '':
                     moves.append(moveset[f'move{i}'].strip())
-            # TODO Remove this later
-            print(moves)
+
             comp_moves = []
             for i in range(4):
                 count = 0
@@ -164,7 +162,8 @@ def pick_computer_pokemon():
 
 def create_users_pokemon():
     users_pokemon = []
-    for i in range(1, 4):
+    # TODO Change later to 7
+    for i in range(1, 7):
         picked_pokemon = pick_pokemon(i)
         users_pokemon.append(picked_pokemon)
     return users_pokemon
@@ -205,7 +204,9 @@ def send_out_pokemon(opponent, opponent_mon: pokemon_move_class.Pokemon):
 def print_pokemon():
     print('Your Pokemon: ')
     for pokemon in users_pokemon_copy:
-        print(f'{users_pokemon_copy.index(pokemon) + 1}. ' + pokemon.name)
+        print(f'{users_pokemon_copy.index(pokemon) + 1}. '
+              + pokemon.name.ljust(25) +
+              f'({pokemon.hp}/{pokemon.ORIGINAL_HP} HP)')
 
     print('\nOpponents Pokemon: ')
     for cpu_pokemon in computers_pokemon_copy:
