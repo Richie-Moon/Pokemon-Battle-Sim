@@ -162,7 +162,6 @@ def pick_computer_pokemon():
 
 def create_users_pokemon():
     users_pokemon = []
-    # TODO Change later to 7
     for i in range(1, 7):
         picked_pokemon = pick_pokemon(i)
         users_pokemon.append(picked_pokemon)
